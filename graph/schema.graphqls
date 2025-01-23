@@ -1,0 +1,74 @@
+type Product {
+    id: ID!
+    name: String!
+    description: String!
+    price: Float!
+    stock: Int!
+    createdAt: String!
+    updatedAt: String!
+}
+
+input AddProductInput {
+    name: String!
+    description: String!
+    price: Float!
+    stock: Int!
+}
+
+input UpdateProductInput {
+    id: ID!
+    name: String
+    description: String
+    price: Float
+    stock: Int
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    role: String!
+    createdAt: String!
+    updatedAt: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    name: String!
+    email: String!
+    password: String!
+    passwordConfirm: String!
+    role: String
+    verified: Boolean
+}
+
+input UpdateUserInput {
+    id: ID!
+    name: String
+    email: String
+}
+
+type Mutation {
+    # User Mutations
+    createUser(input: RegisterInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+    deleteUser(id: ID!): Boolean!
+    
+    # Product Mutations
+    addProduct(input: AddProductInput!): Product
+    updateProduct(input: UpdateProductInput!): Product
+    deleteProduct(id: ID!): Boolean
+}
+
+type Query {
+    findUser(id: ID!): User
+    getAllUser: [User!]!
+
+    findProduct(id: ID!): Product
+    getAllProduct: [Product!]!
+}
+
